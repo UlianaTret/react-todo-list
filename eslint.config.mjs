@@ -112,7 +112,6 @@ export default [
 
   // All JS/TS
   {
-    // files: ['src/components/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
     files: ['src/components/*.jsx', "src/components/*.js", "src/*.js"],
     languageOptions: {
       globals: {
@@ -181,5 +180,5 @@ export default [
       '@typescript-eslint/no-magic-numbers': 'off',
     },
   },
-  eslintConfigPrettier,
+  // eslintConfigPrettier,
 ];
