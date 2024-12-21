@@ -5,6 +5,7 @@ const Label = ({ task, date }) => {
   return (
     <label>
       <span className="description">{task}</span>
+        <span className="description">{task}</span>
       <span className="created">{`created ${formatDistanceToNow(date, Date.now())} ago`}</span>
     </label>
   );
