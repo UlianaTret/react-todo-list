@@ -14,7 +14,7 @@ const ListFilter = ({ activeFilter, changeFilter }) => {
       {filters.map((value) => (
         <Filter
           key={value.id}
-          className={value.id === activeFilter ? '.selected' : ''}
+          className={value.id === activeFilter ? 'selected' : ''}
           text={value.text}
           changeFilter={changeFilter}
         />

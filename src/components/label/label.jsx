@@ -21,6 +21,10 @@ export default class Label extends React.Component {
     clearInterval(this.timerID);
   };
 
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
   render() {
     const { task, date } = this.props;
     return (
