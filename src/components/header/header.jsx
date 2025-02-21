@@ -1,12 +1,12 @@
 import React from 'react';
 
-import InputTask from '../new-task-form';
+import InputTask from '../input-task';
 
-const Header = ({ lastId, addTask }) => {
+const Header = ({ addTask }) => {
   return (
     <header className="header">
       <h1>todos</h1>
-      <InputTask lastId={lastId} addTask={addTask} />
+      <InputTask addTask={addTask} />
     </header>
   );
 };

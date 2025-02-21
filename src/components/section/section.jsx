@@ -4,15 +4,13 @@ import TodoList from '../todo-list';
 import Footer from '../footer';
 
 const Section = (props) => {
-  const { items, countTasks, onDeleteTask, onToggleDone, updateTask, activeFilter, changeFilter, clearCompleted } =
-    props;
-  const itemsLeft = items.filter((value) => !value.status).length;
+  const { items, onDeleteTask, onToggleDone, updateTask, activeFilter, changeFilter, clearCompleted } = props;
+
   return (
     <section className="main">
       <TodoList items={items} onDeleteTask={onDeleteTask} onToggleDone={onToggleDone} updateTask={updateTask} />
       <Footer
-        itemsLeft={itemsLeft}
-        countTasks={countTasks}
+        countTasks={items ? items.filter((value) => !value.status).length : 0}
         activeFilter={activeFilter}
         changeFilter={changeFilter}
         clearCompleted={clearCompleted}

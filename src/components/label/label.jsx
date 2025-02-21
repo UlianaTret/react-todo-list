@@ -1,42 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
-export default class Label extends React.Component {
-  state = {
-    time: 0,
-  };
+const Label = ({ task, date }) => {
+  const [time, updateTime] = useState(0);
+  const [timerId, setTimerId] = useState();
 
-  updateTime() {
-    this.setState({
-      time: this.state.time + 1,
-    });
+  function startTimer() {
+    pauseTimer();
+    const newTimerId = setInterval(() => updateTime((time) => time + 1), 1000);
+    setTimerId(newTimerId);
   }
 
-  startTimer = () => {
-    this.pauseTimer();
-    this.timerID = setInterval(() => this.updateTime(), 1000);
-  };
-
-  pauseTimer = () => {
-    clearInterval(this.timerID);
-  };
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
+  function pauseTimer() {
+    setTimerId(clearInterval(timerId));
   }
 
-  render() {
-    const { task, date } = this.props;
-    return (
-      <label>
-        <span className="title">{task}</span>
-        <span className="description">
-          <button className="icon icon-play" onClick={this.startTimer}></button>
-          <button className="icon icon-pause" onClick={this.pauseTimer}></button>
-          {` ${Math.floor(this.state.time / 60)}:${this.state.time % 60} `}
-        </span>
-        <span className="description">{`created ${formatDistanceToNow(date, Date.now())} ago`}</span>
-      </label>
-    );
+  function formatTimer(time) {
+    return ` ${Math.floor(time / 60)}:${time % 60 < 10 ? '0' + (time % 60) : time % 60} `;
   }
-}
+
+  return (
+    <label>
+      <span className="title">{task}</span>
+      <span className="description">
+        <button className="icon icon-play" onClick={startTimer}></button>
+        <button className="icon icon-pause" onClick={pauseTimer}></button>
+        {formatTimer(time)}
+      </span>
+      <span className="description">{`created ${formatDistanceToNow(date, Date.now())} ago`}</span>
+    </label>
+  );
+};
+
+export default Label;
