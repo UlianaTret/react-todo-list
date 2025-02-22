@@ -1,18 +1,22 @@
 import React from 'react';
 
-const Filter = ({ text, className, changeFilter }) => {
-  const handleClick = (e) => {
+export default class Filter extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleClick = (e) => {
     e.stopPropagation();
-    changeFilter(text);
+    this.props.changeFilter(e.target.value);
   };
 
-  return (
-    <li key={text}>
-      <button className={className} onClick={handleClick}>
-        {text}
-      </button>
-    </li>
-  );
-};
-
-export default Filter;
+  render() {
+    const { text, className } = this.props;
+    return (
+      <li key={text}>
+        <button className={className} onClick={this.handleClick} value={text}>
+          {text}
+        </button>
+      </li>
+    );
+  }
+}

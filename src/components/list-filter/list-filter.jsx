@@ -2,25 +2,30 @@ import React from 'react';
 
 import Filter from '../filter';
 
-const ListFilter = ({ activeFilter, changeFilter }) => {
-  const filters = [
-    { id: 'All', text: 'All' },
-    { id: 'Active', text: 'Active' },
-    { id: 'Completed', text: 'Completed' },
-  ];
+export default class ListFilter extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <ul className="filters">
-      {filters.map((value) => (
-        <Filter
-          key={value.id}
-          className={value.id === activeFilter ? 'selected' : ''}
-          text={value.text}
-          changeFilter={changeFilter}
-        />
-      ))}
-    </ul>
-  );
-};
+  render() {
+    const { activeFilter, changeFilter } = this.props;
+    const filters = [
+      { id: 'All', text: 'All' },
+      { id: 'Active', text: 'Active' },
+      { id: 'Completed', text: 'Completed' },
+    ];
 
-export default ListFilter;
+    return (
+      <ul className="filters">
+        {filters.map((value) => (
+          <Filter
+            key={value.id}
+            className={value.id === activeFilter ? 'selected' : ''}
+            text={value.text}
+            changeFilter={changeFilter}
+          />
+        ))}
+      </ul>
+    );
+  }
+}
